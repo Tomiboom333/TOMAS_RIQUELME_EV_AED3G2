@@ -1,6 +1,5 @@
 //single wire
 //4 Pin Single row
-//do not send any instruction to the sensor in within one second in order to pass the unstable status
 //empieza con un 0 la transmision, cierra con un 1 de resistencia pull up
 //(float) datoFloat = datoByte[0];
 
@@ -52,7 +51,6 @@ bool dht11_read(dht11_t* sensor){
     for(int i=0;i<5;i++){
         for(int j = 0;j<8;j++){
             delay_us(50);
-            __disable_irq();
             while(tiempoUs <=90 && (sensor -> port -> IDR&(1<< sensor -> pin_num))){
                 delay_us(1);
                 tiempoUs ++;
